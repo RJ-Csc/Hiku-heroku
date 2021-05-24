@@ -26,6 +26,12 @@
           document.location.reload(true);
         });
       });
+
+      $('#editPost').on('click', function () {
+        var postID = $(this).siblings('#deletePostID').text();
+        $.post('/deleteExplorePost', { postID: postID }, function(result) {
+        });
+      });
     });
   </script>
 </head>
@@ -43,7 +49,10 @@
       <div class="postheadercontent">
         {{~username~}} <span style="color:grey"> • Posted {{postedAt}}</span>
       </div>
-      <!--<a class="edit">edit</a>-->
+      {{#if (ifSameUser username loggedIn)}}
+        <p id="deletePostID" style="visibility: hidden">{{~postID}}</p>
+        <a class="edit" id="editPost" href="/forum/explore/{{username}}">X</a>
+      {{/if}}
     </div>
     <div class="mainpost">
 

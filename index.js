@@ -59,14 +59,15 @@ hbs.registerHelper('linebreaks', function (content) {
   content = content.replace(/(\r\n|\n|\r)/gm, '<br>');
   return new hbs.SafeString(content);;
 });
+hbs.registerHelper('ifSameUser', function (session, post) {
+  if (session == post)
+    return true;
+  else
+    return false;
+});
 
-/*
+
 app.listen(port, hostname, function() {
   console.log('Server is running at:');
   console.log('http://' + hostname + ':' + port);
-});
-*/
-app.listen(port || 3000, hostname || "0.0.0.0", function(){
-	console.log('Server running at:');
-	console.log('http://' + hostname  + ':' + port);
 });

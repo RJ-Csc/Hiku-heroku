@@ -59,6 +59,7 @@ app.get('/updateDiscussionRatings', forumDiscussionController.getRating);
 app.get('/forum/discussion/post/:postID', discussionPostController.getDiscussionPost);
 app.post('/forum/discussion/post/:postID', discussionPostController.postComment);
 app.get('/updateDiscussionRating', discussionPostController.getRating);
+app.post('/deleteDiscussionPost', discussionPostController.deletePost);
 
 /* Forum Battles */
 app.get('/forum/battle/:username', forumBattleController.getForumBattle);
@@ -69,6 +70,7 @@ app.get('/updateBattleRatings', forumBattleController.getRating);
 app.get('/forum/battle/post/:postID', battlePostController.getBattlePost);
 app.post('/forum/battle/post/:postID', battlePostController.postComment);
 app.get('/updateBattleRating', battlePostController.getRating);
+app.post('/deleteBattlePost', battlePostController.deletePost);
 
 app.get('/battle/:username', battleController.getBattle);
 app.post('/postChallenge', battleController.postChallenge);
@@ -93,7 +95,6 @@ app.post('/acceptTrade', tradeController.acceptTrade);
 app.post('/removeTrade', tradeController.removeTrade);
 app.post('/postForumTrade', tradeController.postForumTrade);
 
-
 /* Forum Explorations */
 app.get('/forum/explore/:username', forumExploreController.getForumExplore);
 app.post('/likeExplorePost', forumExploreController.postLike);
@@ -103,9 +104,12 @@ app.get('/updateExploreRatings', forumExploreController.getRating);
 app.get('/forum/explore/post/:postID', explorePostController.getExplorePost);
 app.post('/forum/explore/post/:postID', explorePostController.postComment);
 app.get('/updateExploreRating', explorePostController.getRating);
+app.post('/deleteExplorePost', explorePostController.deletePost);
 
 app.get('/explore/:username', exploreController.getExplore);
 app.post('/postExplore', exploreController.postExplore);
+app.post('/postTask', exploreController.postTask);
+app.get('/getActiveTask', exploreController.getActiveTask);
 
 app.post('/changeUsername', accountController.changeUsername);
 app.post('/changePassword', accountController.changePassword);

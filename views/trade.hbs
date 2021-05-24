@@ -22,6 +22,14 @@
     var activeTrade = 0;
     
     $(document).ready(function () {
+      var username = {{{json username}}};
+      $.get('/getTradeOffers', { username: username }, function(result) {
+          if(result.tradeOffers.length != 0){
+            $('#tradeCanceller').css('background-color', '#FF6A55');
+            $('#tradeCanceller').html('Someone has sent a trade offer!');
+            $('#tradeCanceller').prop('disabled', true);
+          }
+        });
 
       $('#testSubmit').ready(function () {
         var username = {{{json username}}};

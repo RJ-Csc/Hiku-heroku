@@ -6,7 +6,7 @@
         {{loc_title}}
       </div>
       <div class="explore_possible_loot">
-          Possible Loot: {{loc_loot}}
+          Possible Loot: {{loc_loot}} | Level: {{level}}
       </div>
     </div>
 
@@ -17,14 +17,10 @@
         <div class="exploreopt buttonopt">
           <p id="loc_title" hidden>{{~loc_title~}}</p>
           <p id="loc_loot" hidden>{{~loc_loot~}}</p>
+          <p id="loc_level" hidden>{{~level~}}</p>
           <input id="soloexplore" type="button" class="explorebutton" value="SOLO">
           <input name="teamexplore" id="teamexplore" type="submit" class="explorebutton" value="CO-OP (Forum)">
         </div>
-      </div>
-    <hr>
-      <div class="explorefooter slidecontainer">
-        <input type="range" min="1" max="100" value="1" class="slider" id="multiplier">
-        <p class="outcome" id="multiplierlabel">15m ⇌ x1.0 exp/loot multiplier</p>
       </div>
     </div>
   </div>

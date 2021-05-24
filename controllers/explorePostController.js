@@ -32,6 +32,8 @@ const explorePostController = {
         details.content = result.content;
         details.rating = result.rating;
 
+        details.loggedIn = req.session.username;
+
         var date = new Date(result.postedAt);
         details.postedAt = moment(date).fromNow();
 
@@ -94,6 +96,18 @@ const explorePostController = {
     var postID = req.query.postID;
     db.findOne(ForumExplore, {postID: postID}, '', function(result) {
       res.send(result);
+    });
+  },
+
+  deletePost: function(req, res) {
+    var postID = req.body.postID;
+    db.deleteOne(ForumExplore, {postID: postID}, function(flag) {
+      if (flag) {
+        console.log('Deleted ' + postID);
+      }
+      else {
+        console.log('Failed to delete ' + postID);
+      }
     });
   }
 }

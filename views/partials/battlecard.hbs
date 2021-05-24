@@ -15,20 +15,13 @@
           Possible Loot: {{loot}}
           <div class="buttonopt">
             <input name="solobattle" type="button" class="battlebutton" id="solobattle" value="SOLO">
-            <input name="teambattle" type="submit" class="battlebutton" id="teambattle" value="CO-OP (Forum)">
+            <input name="teambattle" type="submit" class="battlebutton" id="teambattle" value="CO-OP (Forum)" href="/forum/battle/{{username}}">
             <p id="loot" hidden>{{~loot~}}</p>
             <p id="level" hidden>{{~level~}}</p>
             <p id="bossName" hidden>{{~bossName~}}</p>
           </div>
         </div>
 
-      </div>
-    </div>
-    <hr>
-    <div class="battlefooter">
-      <div class="slidecontainer">
-        <input name="multiplier" type="range" min="1" max="100" value="1" class="slider" id="multiplier">
-        <p class="outcome" id="multiplierLabel">{{multiplier}}</p>
       </div>
     </div>
   </form>

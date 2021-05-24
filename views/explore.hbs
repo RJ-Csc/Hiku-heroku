@@ -8,20 +8,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+      var username = {{{json username}}};
+      $.get('/getActiveTask', {username: username}, function (result) {
+        if(result){
+          $('#explorelisting').css('display', 'none');
+        }
+      });
       $('#explorelisting').on('click', '#teamexplore', function() {
         var title = prompt("Please enter challenge title", "");
         if (title == null || title == "") {
           title = "No Title";
         }
-        var multiplier = 1;//$(this).parent('div').parent('div').siblings('div').children('slider').val();
+        var level = $(this).siblings('#loc_level').text();
+
         var location =  $(this).siblings('#loc_title').text();
         var loot = $(this).siblings('#loc_loot').text();
-        console.log(loot + ' ' + location + ' ' + multiplier);
-        $.post('/postExplore', {title: title, location: location, loot: loot, multiplier: multiplier}, function(result) {
+        console.log(loot + ' ' + location + ' ' + level);
+        $.post('/postExplore', {title: title, location: location, loot: loot, level: level}, function(result) {
+        });
+        $.post('/postTask', {taskName: location, expGain: level}, function(result) {
         });
         alert('Posted in Forum!');
+        });
+        $('#explorelisting').on('click', '#soloexplore', function() {
+          var level = $(this).siblings('#loc_level').text();
+          var location =  $(this).siblings('#loc_title').text();
+          console.log(location + ' ' + level);
+          $.post('/postTask', {taskName: location, expGain: level}, function(result) {
+          });
+          alert('Task added!');
+        });
       });
-    });
   </script>
 </head>
 <body>
@@ -31,7 +48,7 @@
 
   <div id="explorerefresh">
     <p id="exploretext">EXPLORE</p>
-    <p id="timer">⏰ • 1h until task refresh</p>
+    
   </div>
 
   <div id="explorelisting">

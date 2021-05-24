@@ -135,6 +135,15 @@ $(document).ready(function () {
         $('#error1').text('Please fill up the field.');
     }
     });
+    $('#changeUsername').click(function () {
+        window.location.href = window.location.href;
+    });
+    $('#changePassword').click(function () {
+        window.location.href = window.location.href;
+    });
+    $('#changeStatus').click(function () {
+        window.location.href = window.location.href;
+    });
     $('#userHead').click(function () {
         $('#usernameBox').css('height', '175px');
         $('#usernameBox').css('opacity', '1');

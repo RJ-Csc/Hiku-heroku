@@ -23,7 +23,7 @@ var detailsSchema = new mongoose.Schema({
     loot: {
       type: String
     },
-    multiplier: {
+    level: {
       type: Number
     }
 });

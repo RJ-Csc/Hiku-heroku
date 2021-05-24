@@ -8,6 +8,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+      var username = {{{json username}}};
+      $.get('/getActiveTask', {username: username}, function (result) {
+        if(result){
+          $('#battlelisting').css('display', 'none');
+          $('.challengesection').css('display', 'none');
+        }
+      });
       $('#challenge').on('click', function() {
         var title = prompt("Please enter challenge title", "");
 
@@ -27,14 +34,24 @@
         if (title == null || title == "") {
           title = "No Title";
         }
-        var multiplier = 1;//$(this).parent('div').parent('div').siblings('div').children('slider').val();
         var opponent = $(this).siblings('#bossName').text();
         var loot = $(this).siblings('#loot').text();
         var level = $(this).siblings('#level').text();
-        $.post('/postBattle', {title: title, multiplier: multiplier, opponent: opponent, level: level, loot: loot}, function(result) {
+        $.post('/postBattle', {title: title, opponent: opponent, level: level, loot: loot}, function(result) {
         });
+        $.post('/postTask', {taskName: opponent, expGain: level}, function(result) {
+          });
         alert('Posted in Forum!');
       });
+      $('#battlelisting').on('click', '#solobattle', function() {
+          var level = $(this).siblings('#level').text();
+          var opponent = $(this).siblings('#bossName').text();
+          console.log(location + ' ' + level);
+          $.post('/postTask', {taskName: opponent, expGain: level}, function(result) {
+          });
+          alert('Task added!');
+        });
+
     });
   </script>
 </head>
@@ -45,7 +62,7 @@
 
   <div id="battlerefresh">
     <p id="battletext">BATTLE</p>
-    <p id="timer">⏰ • 1h until task refresh</p>
+    
   </div>
 
   <!-- Challenge -->
@@ -63,20 +80,11 @@
 
           <div class="battleopt">
             <div class="buttonopt">
-              <input id="challenge" name="challenge" type="submit" class="challengebutton" value="CHALLENGE">
+              <input id="challenge" name="challenge" type="submit" class="challengebutton" value="CHALLENGE" href="/forum/battle/{{username}}">
             </div>
           </div>
 
         </div>
-      </div>
-      <hr>
-      <div class="battlefooter">
-
-        <div class="slidecontainer">
-          <input name="challengemultiplier" type="range" min="1" max="100" value="1" class="slider" id="challengemultiplier">
-          <p class="outcome" id="challengemultiplierlabel">15m ⇌ x1.0 exp multiplier</p>
-        </div>
-        -->
       </div>
     </div>
   <!--</form>-->

@@ -31,44 +31,39 @@ const battleController = {
 
         var battles = [
           {
-            bossName: "Tite",
-            level: 69,
+            bossName: "Attack on Tanti",
+            level: 76,
             bossImg: 'mob1',
-            description: 'tite',
-            loot: 'Dildo',
-            multiplier: 'aaron'
+            description: 'A titan known as Tanti has been seen roaming a nearby forest. It has been said that he is weak against bladed weapons. However, be cautious as his claws rip easily through wooden defenses and leather armor. ',
+            loot: 'Spiked Guard',
           },
           {
-            bossName: "Tite",
-            level: 6969,
+            bossName: "Battle for Bacsi's Village",
+            level: 12,
             bossImg: 'mob2',
-            description: 'tite',
-            loot: 'Dildo',
-            multiplier: 'aaron'
+            description: 'Bacsi\'s Village is being invaded by Rica and her chicken army. Sources say her and her army are weak against ranged or flaming weapons. Shields offer no defense as her chickens can easily overtake you. ',
+            loot: 'Warhammer',
           },
           {
-            bossName: "Tite",
-            level: 696969,
+            bossName: "Mischievous Mr. Lerhit",
+            level: 44,
             bossImg: 'mob3',
-            description: 'tite',
-            loot: 'Dildo',
-            multiplier: 'aaron'
+            description: 'Mr. Lerhit is wreaking mischief on a small nearby village. It has been observed that ranged weapons work best against him as he can easily disarm you of any weapon or shield if he gets close enough.',
+            loot: 'Chainmail',
           },
           {
-            bossName: "Tite",
-            level: 69696969,
+            bossName: "Shogun Battle",
+            level: 23,
             bossImg: 'mob4',
-            description: 'tite',
-            loot: 'Dildo',
-            multiplier: 'aaron'
+            description: 'Nobu is a shogun threatening the well-being of a rice farm. He handles well against sharp weapons but easily loses his bearings against a strong shield. ',
+            loot: 'Knight\'s Armor',
           },
           {
-            bossName: "Tite",
-            level: 6969696969,
+            bossName: "The Act of Joy",
+            level: 54,
             bossImg: 'mob5',
-            description: 'tite',
-            loot: 'Dildo',
-            multiplier: 'aaron'
+            description: 'Joy enjoys taking the joy away by stealing children\'s toys. Teaching him a lesson is easy with blunt weapons. Do note though that wooden shields have no effect against him as he can easily take that away from you. ',
+            loot: 'Iron Buckler',
           }
         ];
         details.battles = battles;
@@ -92,7 +87,6 @@ const battleController = {
 
         var opponent = req.body.opponent;
         var level = 1;
-        var multiplier = req.body.multiplier;
 
         var challenge = {
           username: username,
@@ -101,7 +95,6 @@ const battleController = {
           content: {
             opponent: opponent,
             level: level,
-            multiplier: multiplier,
             loot: 'None'
           },
           comments: [],
@@ -111,7 +104,7 @@ const battleController = {
         db.insertOne(ForumBattle, challenge, function(flag) {
           if (flag) {
             console.log('Added ' + challenge.title);
-            res.redirect('/forum/battle/' + username);
+            //res.redirect('/forum/battle/' + username);
           }
         });
       }
@@ -133,7 +126,6 @@ const battleController = {
 
         var opponent = req.body.opponent;
         var level = req.body.level;
-        var multiplier = req.body.multiplier;
         var loot = req.body.loot;
 
         var battle = {
@@ -143,7 +135,6 @@ const battleController = {
           content: {
             opponent: opponent,
             level: level,
-            multiplier: multiplier,
             loot: loot
           },
           comments: [],
@@ -153,7 +144,7 @@ const battleController = {
         db.insertOne(ForumBattle, battle, function(flag) {
           if (flag) {
             console.log('Added ' + battle.title);
-            res.redirect('/forum/battle/' + username);
+            //res.redirect('/forum/battle/' + username);
           }
         });
       }
