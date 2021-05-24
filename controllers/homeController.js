@@ -1,6 +1,7 @@
 const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
+const Task = require('../models/TaskModel.js');
 
 const homeController = {
   getHome: function(req, res) {
@@ -31,6 +32,20 @@ const homeController = {
       }
       else {
         res.render('error', details);
+      }
+    });
+  },
+  cancelTask: function(req, res) {
+    var username = req.body.username;
+    console.log('removing task');
+    db.deleteOne(Task, {username:username}, (err,result) => {
+      if(err) {
+        console.error(err);
+        res.redirect("/home/"+username);
+      }
+      else{
+        console.log(':)');
+        res.redirect("/home/"+username);
       }
     });
   }

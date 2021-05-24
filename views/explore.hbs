@@ -12,6 +12,7 @@
       $.get('/getActiveTask', {username: username}, function (result) {
         if(result){
           $('#explorelisting').css('display', 'none');
+          $('.onActiveTask').css('display', 'flex');
         }
       });
       $('#explorelisting').on('click', '#teamexplore', function() {
@@ -33,8 +34,10 @@
         $('#explorelisting').on('click', '#soloexplore', function() {
           var level = $(this).siblings('#loc_level').text();
           var location =  $(this).siblings('#loc_title').text();
+          var loot = $(this).siblings('#loc_loot').text();
+          var description = $(this).parent().siblings('.exploredesc').text();
           console.log(location + ' ' + level);
-          $.post('/postTask', {taskName: location, expGain: level}, function(result) {
+          $.post('/postTask', {taskName: location, expGain: level, lootName:loot, description: description}, function(result) {
           });
           alert('Task added!');
         });
@@ -55,6 +58,12 @@
     {{#each location}}
         {{> explore_loc}}
     {{/each}}
+  </div>
+
+  <div class="onActiveTask" style="display:none">
+    <div class="exploreheader">
+        You are already on an active task!
+    </div>
   </div>
 
 </body>

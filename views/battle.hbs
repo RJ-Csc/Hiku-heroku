@@ -13,6 +13,7 @@
         if(result){
           $('#battlelisting').css('display', 'none');
           $('.challengesection').css('display', 'none');
+          $('.onActiveTask').css('display', 'flex');
         }
       });
       $('#challenge').on('click', function() {
@@ -93,6 +94,12 @@
     {{#each battles}}
       {{> battlecard}}
     {{/each}}
+  </div>
+
+  <div class="onActiveTask" style="display:none">
+    <div class="battleheader">
+        You are already on an active task!
+      </div>
   </div>
 </body>
 </html>

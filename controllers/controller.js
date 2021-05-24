@@ -15,6 +15,10 @@ const controller = {
 
       res.render('index', details);
     }
+  },
+
+  getAbout: function(req, res) {
+    res.render('about');
   }
 }
 

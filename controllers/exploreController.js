@@ -127,14 +127,18 @@ const exploreController = {
         var taskName = req.body.taskName;
         var lootType = 3;
         var lootIndex = 3;
+        var lootName = req.body.lootName;
         var expGain = req.body.expGain;
+        var description = req.body.description;
         var endDate = new Date();
 
         var task = {
           username: username,
           taskName: taskName,
           lootType: lootType,
+          lootName: lootName,
           lootIndex: lootIndex,
+          description: description,
           expGain: expGain,
           endDate: endDate
         };

@@ -6,6 +6,42 @@
   <link rel="stylesheet" href="/css/home.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <!--<script src="/js/home.js"></script>-->
+
+  <script>
+    $(document).ready(function() {
+      var username = {{{json username}}};
+      
+      $('#curr_task_cancel').on('click', function() {
+        var username = {{{json username}}};
+        console.log(username);
+
+        $.post("/cancelTask", {username: username}, function (result) {
+          window.location.href = window.location.href;
+          console.log(username);
+        });
+      });
+
+
+
+      $.get('/getActiveTask', {username: username}, function (result) {
+        if(result){
+          $("#visible_infobox").css("display", "block");
+          $("#task_title").html(result.taskName);
+          $("#task_loot").html(result.lootName);
+          $("#curr_task_desc").html(result.description);
+          console.log("you have task");
+        }
+        else{
+          $("#infobox_stats").html("<div id=\"infobox_title\">Welcome back!</div><div id=no_task_msg>You\'re currently not on a task. To begin one, click on one of the tabs above.</div>");
+          console.log("you have no task");
+        }
+      });
+    });
+
+
+
+  </script>
+
 </head>
 <body>
   {{> header username=username}}
@@ -37,48 +73,33 @@
 
       </div>
       <div id="infobox_stats" class="infobox_elem">
-      <!--by default, player is not doing task-->
-
-      <div id="infobox_title">
-        Welcome back!
-        </div>
-      <div id=no_task_msg>
-        You're currently not on a task. To begin one, click on the "Explore" tab.
-      </div>
-
-        <!--
-
-          WHEN PLAYER IS DOING TASK
-
+      <div id="visible_infobox" style="display:none">
         <div id="infobox_title">Welcome back!</div>
 
-        <div class="curr_task_bigtext">Current Task: Explore </div>
+					<div class="curr_task_bigtext">Currently on a Task! </div>
 
-        <div id="textbar">
-          <div id="textbox">
-            <div class="curr_task_smalltext">Location:</div>
-            <div class="curr_task_smalltext">Possible Loot:</div>
-            <div class="curr_task_smalltext">Progress:</div>
-          </div>
-          <div id="barbox">
-            <div class="curr_task_variable"> Akihabara</div>
-            <div class="curr_task_variable"> Tanti Spellbook</div>
-            <div id="progbar_container">
-              <div class="prog_bar">5m remaining </div>
-            </div>
-          </div>
-        </div>
+					<div id="textbar">
+						<div id="textbox">
+							<div class="curr_task_smalltext">Title:</div>
+							<div class="curr_task_smalltext">Possible Loot:</div>
+						</div>
+						<div id="barbox">
+							<div id="task_title" class="curr_task_variable"> </div>
+							<div id="task_loot" class="curr_task_variable"> </div>
 
-        <div class="curr_task_bigtext">Description:</div>
+						</div>
+					</div>
 
-        <div id="curr_task_desc">
-          Named after Akihiko Matsubara, the creator of Tanti. Because of that Akihabara frequently gets attacked by the Tanti. Explore this location at your own risk!
-        </div>
+					<div class="curr_task_bigtext">Description:</div>
 
-        <button onClick="cancelTask();" id="curr_task_cancel">
-          Cancel Task
-        </button>
-        -->
+					<div id="curr_task_desc">
+					</div>
+
+					<button id="curr_task_cancel">
+						Cancel Task
+					</button>
+      </div>
+
       </div>
     </div>
   </div>

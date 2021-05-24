@@ -34,6 +34,8 @@ const app = express();
 app.get('/favicon.ico', controller.getFavicon);
 app.get('/', controller.getIndex);
 
+app.get('/about', controller.getAbout);
+
 app.get('/register', registerController.getRegister);
 app.post('/register', validation.registerValidation(), registerController.postRegister);
 app.get('/getCheckUsername', registerController.getCheckUsername);
@@ -46,6 +48,7 @@ app.post('/login', loginController.postLogIn);
 app.get('/logout', logoutController.getLogOut);
 
 app.get('/home/:username', homeController.getHome);
+app.post('/cancelTask', homeController.cancelTask);
 
 app.get('/account/:username', accountController.getAccount);
 

@@ -13,6 +13,14 @@ var TaskSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
+    lootName: {
+        type: String,
+        required: false
+    },
+    description: {
+        type: String,
+        required: false
+    },
     lootIndex: {
         type: Number,
         required: false
