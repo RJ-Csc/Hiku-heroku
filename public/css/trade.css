@@ -23,7 +23,7 @@ button{
 .tradebox{
 	box-sizing: border-box;
 	width: 1000px;
-	height: 385px;
+	height: 250px;
 	background-color: #434c5e;
     display: flex;
     border-radius: 10px;

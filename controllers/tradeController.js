@@ -65,7 +65,7 @@ const tradeController = {
     db.updateOne(User, {username: username}, { $pull: {charOwned: itemIndex} }, function (flag) {
         if (flag) {
           console.log('removed ' + itemIndex);
-          res.redirect('/trade/' + username);
+          //res.redirect('/trade/' + username);
         }
         else{
           console.log('char '+ flag);
@@ -75,7 +75,7 @@ const tradeController = {
     db.updateOne(User, {username: username}, { $pull: {weapOwned: itemIndex} }, function (flag) {
         if (flag) {
           console.log('removed ' + itemIndex);
-          res.redirect('/trade/' + username);
+          //res.redirect('/trade/' + username);
         }
         else{
           console.log(flag);
@@ -85,7 +85,7 @@ const tradeController = {
     db.updateOne(User, {username: username}, { $pull: {shieldOwned: itemIndex} }, function (flag) {
         if (flag) {
           console.log('removed ' + itemIndex);
-          res.redirect('/trade/' + username);
+          //res.redirect('/trade/' + username);
         }
         else{
           console.log(flag);
@@ -95,7 +95,7 @@ const tradeController = {
     db.updateOne(User, {username: username}, { $pull: {armOwned: itemIndex} }, function (flag) {
         if (flag) {
           console.log('removed ' + itemIndex);
-          res.redirect('/trade/' + username);
+          //res.redirect('/trade/' + username);
         }
         else{
           console.log(flag);

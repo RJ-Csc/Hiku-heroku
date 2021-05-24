@@ -20,7 +20,7 @@
       document.getElementById("itemIndex").value = charOwned[currChar];
     }
     var activeTrade = 0;
-    
+
     $(document).ready(function () {
       var username = {{{json username}}};
       $.get('/getTradeOffers', { username: username }, function(result) {
@@ -33,7 +33,7 @@
 
       $('#testSubmit').ready(function () {
         var username = {{{json username}}};
-          
+
           if(!$('#itemIndexMain').val()){
             $('.tradebox2').css('display','none');
           }
@@ -114,7 +114,7 @@
         });
       $('#postSubmit').click(function () {
         var itemName = $('#toTrade').val();
-        alert('posting to forum');
+
           $.post('/postForumTrade', {itemName: itemName}, function (result) {
           });
         });
@@ -168,10 +168,9 @@
 
     <hr>
 
-      <div class="headertext" style="font-size:25px">Write something about it!</div>
+      <div class="headertext" style="font-size:25px">Make a Trade!</div>
       <form method="post" action="/postTrade">
         <div class="colcontainer">
-          <textarea name="posttext" cols="40" rows="5" style="margin-bottom: 10px;"></textarea>
           <button onClick="post();" class="bottombutton" id="postSubmit" href="/forum/trade/{{username}}">SUBMIT</button>
           <input style="visibility: hidden;" id="toTrade" name="itemName">
           <input style="visibility: hidden;" id="itemType" name="itemType">
@@ -183,7 +182,7 @@
   <div class="tradebox2" style="margin-bottom: 50px; margin-top: 15px">
     <div class="headertext"> Trade Offers </div>
     <hr>
-    
+
     <div class="rowcontainer">
       <div class="colcontainer" style="margin-left: 10px">
         <button class="bottombutton" id="tradeCanceller" style="margin-top: auto">Cancel Trade</button>
@@ -194,8 +193,8 @@
         {{/each}}
       </div>
       <div class="colcontainer" id="itemdisp" style=" width:0; transition: .5s ease; opacity:0;overflow: hidden;">
-        <div class="headertext" style="font-size: 25px; overflow: hidden;" > Posted Items </div>        
-        <hr>        
+        <div class="headertext" style="font-size: 25px; overflow: hidden;" > Posted Items </div>
+        <hr>
         <div class="headertext" style="font-size: 20px; font-weight: bold" id="dispitem"></div>
 
         <div class="headertext" style="font-size: 20px; color:#8fbcbb; font-weight: bold">Offers</div>
