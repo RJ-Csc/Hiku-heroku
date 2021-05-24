@@ -4,7 +4,8 @@
   "description": "rework for better flow",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
   },
   "repository": {
     "type": "git",
@@ -28,8 +29,5 @@
     "moment": "^2.29.1",
     "mongodb": "^3.6.6",
     "mongoose": "^5.12.10"
-  },
-  "scripts": {
-    "start": "index.js"
   }
 }
