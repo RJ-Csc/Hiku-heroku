@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forum</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forum.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!--<script src="/js/forum.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#forumlist').on('click', '.likereax', function () {
+          var postID = $(this).siblings('#postID').text();
+          $.post('/likeDiscussionPost', { postID: postID }, function(result) {
+            console.log(result);
+          });
+          $.get('/updateDiscussionRatings', { postID: postID }, function(result) {
+            document.location.reload(true);
+          });
+      });
+
+      $('#forumlist').on('click', '.dislikereax', function () {
+          var postID = $(this).siblings('#postID').text();
+          $.post('/dislikeDiscussionPost', { postID: postID }, function(result) {
+            console.log(result);
+          });
+          $.get('/updateDiscussionRatings', { postID: postID }, function(result) {
+            document.location.reload(true);
+          });
+      });
+
+    });
+  </script>
+</head>
+<body>
+  <div id="top"></div>
+  {{> header username=username}}
+
+  <div class="forumpagebody">
+
+    <!-- Action Section -->
+    <div class="actionsection">
+      <div id="filterSelection">
+        <select id="filter">
+          <option value="all" selected>All</option>
+          <option value="discussion">Discussions</option>
+          <option value="battle">Battles</option>
+          <option value="explore">Explorations</option>
+          <option value="trade">Trades</option>
+        </select>
+      </div>
+      <div id="searchdiv">
+        <!--<input type="text" id="searchfield" placeholder="Search Forum...">-->
+        <input type="text" placeholder="Search Forum...">
+        <input type="button" id="searchbutton" onClick="searchText();" value="Search">
+      </div>
+
+      <div id="createpost">
+        <form id="discinput" method="post">
+          <input type="text" name="title" id="title" placeholder="Title">
+          <textarea placeholder="Create Discussion" name="content" id="content" name="forumSubmission"></textarea>
+          <input type="submit" name="submitPost" id="submitPost" value="SUBMIT">
+        </form>
+      </div>
+
+      <div id="otherforumactions">
+        <a href="/battle/{{name}}"><div class="forumactions" id="reqbattle">Battle!</div></a>
+        <p class="actiondesc">Request assistance or challenge!</p>
+        <a href="/explore/{{name}}"><div class="forumactions" id="reqexplore">Explore!</div></a>
+        <p class="actiondesc">Request companions!</p>
+        <a href="/trade/{{name}}"><div class="forumactions" id="reqtrade">Trade!</div></a>
+        <p class="actiondesc">Trade items or characters!</p>
+      </div>
+    </div>
+
+    <!-- Forum Post Listing -->
+    <div class="forumsection" id="forumlist">
+      {{#each posts}}
+        {{> discussionpost}}
+      {{/each}}
+    </div>
+  </div>
+  <a id="backtotop" href="#top">Back to Top!</a>
+</body>
+</html>

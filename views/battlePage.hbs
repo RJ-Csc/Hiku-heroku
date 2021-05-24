@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forumposts.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#like').on('click', function () {
+        var postID = $(this).siblings('#postID').text();
+        $.post('/likeBattlePost', { postID: postID }, function(result) {
+          console.log(result);
+        });
+        $.get('/updateBattleRating', { postID: postID }, function(result) {
+          document.location.reload(true);
+        });
+      });
+
+      $('#dislike').on('click', function () {
+        var postID = $(this).siblings('#postID').text();
+        $.post('/dislikeBattlePost', { postID: postID }, function(result) {
+          console.log(result);
+        });
+        $.get('/updateBattleRating', { postID: postID }, function(result) {
+          document.location.reload(true);
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+
+  {{> header username=username}}
+
+  <!-- Main -->
+  <div class="postsection">
+    <div class="forumtype" id="forumtypebattle">
+      <div class="forum_type_icons" id="battle_icon"></div>
+    </div>
+    <div class="postheader">
+      <img class="usericon" src="/images/avatar/{{profpic}}.png" alt="{{username}} Icon">
+      <div class="postheadercontent">
+        {{~username~}} <span style="color:grey"> • Posted {{postedAt}}</span>
+      </div>
+      <!--<a class="edit">edit</a>-->
+    </div>
+    <div class="mainpost">
+
+      <p class="detailsmainpostbody">
+        {{~#bold}}
+          {{~title~}}
+        {{/bold}}
+        <div class="taskdetails" id="battledetails">
+          Status: <b>OPEN</b><br>
+          Opponent: <b>{{~content.opponent}} ➼ Level {{content.level~}}</b><br>
+          Multiplier?: <b>{{~content.multiplier~}}</b><br>
+          Loot: <b>{{~content.loot~}}</b><br>
+          Takers: <b><p id="takercnt">2</p></b> (Awaiting Confirmation)<br>
+          <input name="acceptbattlebutton" type="submit" id="acceptbattlebutton" value="ACCEPT">
+        </div>
+      </p>
+      <div class="mainpostfooter">
+        <input id="dislike" class="forumreax" type="image" src="/images/dislike.png">
+        <p id="postRating" class="forumreaxcnt">{{rating}}</p>
+        <input type="image" id="like" class="forumreax" src="/images/like.png">
+        <p id="postID" style="visibility: hidden"> {{~postID}}</p>
+      </div>
+
+    </div>
+
+    <!-- Reply -->
+    <div id="submitreplysection">
+      <form id="replyinput" method="post">
+        <textarea placeholder="Comment Reply..." id="replysubmission" name="replysubmission"></textarea>
+        <input type="submit" name="submitbutton" id="submitbutton" value="Comment">
+      </form>
+    </div>
+
+    <div class="repliessection" id="replylist">
+      {{#each replies}}
+        {{> replycard}}
+      {{/each}}
+    </div>
+  </div>
+</body>
+</html>

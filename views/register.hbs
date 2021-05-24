@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Index</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/js/login.js"></script>
+  <script>
+        $(document).ready(function () {
+          $( "#prof0" ).click(function() {
+            console.log("prof0 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/0.png");
+            $("#img_index").val("0");
+          });
+          $( "#prof1" ).click(function() {
+            console.log("prof1 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/1.png");
+            $("#img_index").val("1");
+          });
+          $( "#prof2" ).click(function() {
+            console.log("prof2 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/2.png");
+            $("#img_index").val("2");
+          });
+          $( "#prof3" ).click(function() {
+            console.log("prof3 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/3.png");
+            $("#img_index").val("3");
+          });
+          $( "#prof4" ).click(function() {
+            console.log("prof4 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/4.png");
+            $("#img_index").val("4");
+          });
+
+          // Get the modal
+          var modal = document.getElementById("myModal");
+
+          // Get the button that opens the modal
+          var btn = document.getElementById("myBtn");
+
+          // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName("close")[0];
+
+          // When the user clicks on the button, open the modal
+          btn.onclick = function() {
+            modal.style.display = "block";
+          }
+
+          // When the user clicks on <span> (x), close the modal
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
+
+        $('#username').keyup(function () {
+          /* --For checking if fields are not empty--
+              if(!($('#username').val()) && !($('#password').val()) && !($('#confpassword').val())){
+                    $('#error').html('Please fill up the field');
+                    $('#submit').css('background-color', '#FF6A55');
+                    $('#submit').prop('disabled', true);
+                  }
+          */
+              var username = $('#username').val();
+
+            $.get('/getCheckUsername', {username: username}, function (result) {
+                if(result.username == username || !($('#username').val())) {
+                  $('#username').css('background-color', '#FF6A55');
+                  $('#error').text('Username already taken!');
+                }
+                else {
+                  $('#username').css('background-color', '#9CD9BF');
+                  $('#error').text('');
+                  $('#confpassword').keyup(function () {
+                    var password = $('#password').val();
+                    var confpassword = $('#confpassword').val();
+
+                    if(password == confpassword){
+                      $('#confpassword').css('background-color', '#9CD9BF');
+                      $('#error').text('');
+                      $('#submit').css('background-color', '#4c566a');
+                    }
+                    else{
+                      $('#confpassword').css('background-color', '#FF6A55');
+                      $('#error').text('Passwords are not the same!');
+                      $('#submit').css('background-color', '#FF6A55');
+                    }
+                  });
+                }
+            });
+        });
+        $('#submit').click(function () {
+          // your code here
+
+          if($('#username').val() && $('#password').val() && $('#confpassword').val()){
+            $('#error').text('');
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var img_index = $('#img_index').val();
+            console.log(username +' hi '+  password);
+
+            if($('#password').val() != $('#confpassword').val()){
+              $('#error').text('Passwords are not the same!');
+            }
+
+            else if ($('#img_index').val() === ""){
+              $('#error').text('Select an avatar!');
+            }
+
+            else{
+              console.log('entering register acc with ');
+              console.log(username);
+              /*
+              $.post('/register', {username:username , password:password , img_index:img_index}, function (result) {
+                  console.log('added ' + name);
+              });*/
+            }
+
+          }
+
+
+
+          else{
+            $('#error').text('Fill up all fields.');
+
+          }
+       });
+    });
+  </script>
+</head>
+<body>
+
+<!--<form method="post" action="/register">-->
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div>Select an avatar:</div>
+    <img id="prof0" class="profpics" src="images/avatar/0.png">
+    <img id="prof1" class="profpics" src="images/avatar/1.png">
+    <img id="prof2" class="profpics" src="images/avatar/2.png">
+    <img id="prof3" class="profpics" src="images/avatar/3.png">
+    <img id="prof4" class="profpics" src="images/avatar/4.png">
+  </div>
+
+</div>
+
+<div id="midbox">
+    <div id="leftbox">
+      {{> intro }}
+      <a href="/" id="back_btn">< Back</a>
+    </div>
+
+    <div id="rightbox">
+
+      <div id="avatarbox">
+        <img id="profpicreg" src="images/avatar/null.png" width="128" height="128">
+      <button id="myBtn">Pick an Avatar</button>
+      </div>
+
+      <form method="post">
+        <div class="logincontainer">
+            <div style="font-size: 22px"> Username </div>
+            <input class="text_field"type="text" id="username" name="username" required>
+            <div style="font-size: 22px"> Password </div>
+            <input class="text_field"type="password" id="password" name="password" required>
+            <div style="font-size: 22px"> Confirm Password </div>
+            <input class="text_field"type="password" id="confpassword" required>
+            <input type="text" id="img_index" name="img_index" style="height:0px" required>
+            <button class="bottombutton" id="submit" type="submit"><p style="margin-top:6px">Register</p></button>
+
+            <p id="error"></p>
+        </div>
+      </form>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<div class="forumpost">
+  <div class="forumtype forumtype_battle">
+    <div class="forumtype_icons battle_icon"></div>
+  </div>
+
+  <div class="forumcontent">
+    <div class="forumpostheader">
+      <img class="usericon" src="/images/avatar/{{profpic}}.png" alt="{{username}} Icon">
+      <div class="forumheadercontent">
+        {{~username~}} <span style="color:grey"> • Posted {{postedAt}}</span>
+      </div>
+    </div>
+    <a href="/forum/battle/post/{{postID}}">
+      <p class="forumbodycontent">
+        {{~#bold}}
+          {{~title~}}
+        {{/bold}}<br><br>
+        <div class="forumdetails" id="battleforumdetails">
+          Status: <b>OPEN</b><br>
+          Opponent: <b>{{~content.opponent}} ➼ Level {{content.level~}}</b><br>
+          Multiplier?: <b>{{~content.multiplier~}}</b><br>
+          Loot: <b>{{~content.loot~}}</b><br>
+        </div>
+      </p>
+    </a>
+
+    <div class="forumpostfooter">
+      <input id="dislikebtn" class="dislikereax" type="image" src="/images/dislike.png">
+      <p class="forumreaxcnt">{{rating}}</p>
+      <input id="likebtn" class="likereax" type="image" src="/images/like.png">
+      <p class="forumcommentcnt">
+        {{#if comments.length}}
+          {{comments.length}} Comments
+        {{/if}}
+      </p>
+      <p id="postID" style="visibility: hidden"> {{~postID}}</p>
+
+    </div>
+  </div>
+</div>

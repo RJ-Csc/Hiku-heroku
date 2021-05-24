@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300&display=swap');
+body{
+    background-color: #2e3440;
+    font-family: 'Lexend';
+}
+
+#midbox{
+    display: flex;
+    flex-direction: row;
+    width: 768px;
+    padding-top: 256px;
+    margin:auto;
+}
+
+#leftbox{
+    display: flex;
+    flex-direction: column;
+    width: 512px;
+}
+
+#rightbox{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    width: 512px;
+    margin: auto;
+}
+
+.body_text{
+    color: white;
+}
+
+#text_dict{
+    padding-top: 20px;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+#text_desc{
+    font-size: 20px;
+    text-align: justify;
+}
+
+.home_btn{
+    background-color: #88c0d0;
+    border-radius: 20px;
+    width: 192px;
+    height: 52px;
+    font-size: 32px;
+    margin: 14px auto;
+    text-decoration: none; 
+    color: #2e3440;
+    cursor: pointer;
+}
+
+.text_field{
+    width: 192px;
+}
+
+#back_btn{
+    text-decoration: none;
+    color: white;
+    font-size: 32px;
+    margin-top: 32px;
+    width: 116px;
+}

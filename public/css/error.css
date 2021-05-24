@@ -1,0 +1,41 @@
+.battlesection {
+  display: flex;
+  flex-direction: column;
+  background-color: #434c5e;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  border-radius: 10px;
+  padding: 10px;
+}
+.battleheader {
+  color: #eceff4;
+  font-weight: bold;
+  text-align: center;
+  font-size: 45px;
+}
+.battlebody {
+    display: flex;
+    flex-direction: column;
+}
+
+.battlebutton {
+    margin: auto;
+    height: 50px;
+    width: 40%;
+    font-size: 24px;
+    cursor: pointer;
+
+    background-color: #88c0d0;
+    color: #2e3440;
+    border-radius: 20px;
+  }
+
+.battledesc {
+  height: 96px;
+  text-align: center;
+  color: #eceff4;
+  font-size: 24px;
+  margin: auto;
+}

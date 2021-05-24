@@ -1,0 +1,38 @@
+<div class="forumpost">
+  <div class="forumtype forumtype_trade">
+    <div class="forumtype_icons trade_icon"></div>
+  </div>
+
+  <div class="forumcontent">
+    <div class="forumpostheader">
+      <img class="usericon" src="/images/avatar/{{profpic}}.png" alt="{{username}} Icon">
+      <div class="forumheadercontent">
+        {{~username~}} <span style="color:grey"> • Posted {{postedAt}}</span>
+      </div>
+    </div>
+    <a href="/forum/trade/post/{{postID}}">
+      <p class="forumbodycontent">
+        {{~#bold}}
+          {{~title~}}
+        {{/bold}}<br><br>
+        <div class="forumdetails" id="tradeforumdetails">
+          For Trade: <b>{{#each content.forTrade}} {{item}}, {{/each}}</b><br>
+          Offers: <b>2</b>
+        </div>
+      </p>
+    </a>
+
+    <div class="forumpostfooter">
+      <input id="dislikebtn" class="dislikereax" type="image" src="/images/dislike.png">
+      <p class="forumreaxcnt">{{rating}}</p>
+      <input id="likebtn" class="likereax" type="image" src="/images/like.png">
+      <p class="forumcommentcnt">
+        {{#if comments.length}}
+          {{comments.length}} Comments
+        {{/if}}
+      </p>
+      <p id="postID" style="visibility: hidden"> {{~postID}}</p>
+
+    </div>
+  </div>
+</div>

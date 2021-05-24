@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forumposts.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    var charOwned = []; 
+    var armOwned = []; 
+    var shieldOwned = [];
+    var weapOwned = []; 
+    charOwned =   {{{json charOwned}}};
+    armOwned =    {{{json armOwned}}};
+    shieldOwned = {{{json shieldOwned}}};
+    weapOwned =   {{{json weapOwned}}};
+
+    var charNames = ["Aaron", "Rickjaw", "Shua", "Cram", "Rog"];
+    var weaponNames = ["Short Sword", "Wooden Bow", "Warhammer", "Nurse's Claymore", "Death's Arm"];
+    var shieldNames = ["Wooden Plate", "Spiked Guard", "Ivy Shield", "Iron Buckler", "Medusa"];
+    var armorNames = ["Leather Tunic", "Chainmail", "Knight's Armor", "Uniqlo", "Iron Suit"];
+    var types = ["Character","Weapon","Shield","Armor"];
+    //0 - char, 1 - weap, 2 - shield 3 - armor
+    var currChar = 0, currWeapon = 0, currShield = 0, currArmor = 0, slot=0;
+
+    function changeCharName (){
+        document.getElementById("name1").innerHTML = charNames[charOwned[currChar]];
+        document.getElementById("offerType").value = slot;
+        document.getElementById("offerIndex").value = charOwned[currChar];
+    }
+    function changeWeapName (){
+        document.getElementById("name1").innerHTML = weaponNames[weapOwned[currWeapon]];
+        document.getElementById("offerType").value = slot;
+        document.getElementById("offerIndex").value = weapOwned[currWeapon];
+    }
+    function changeShiName (){
+        document.getElementById("name1").innerHTML = shieldNames[shieldOwned[currShield]];
+        document.getElementById("offerType").value = slot;
+        document.getElementById("offerIndex").value = shieldOwned[currShield];
+    }
+    function changeArmName (){
+        document.getElementById("name1").innerHTML = armorNames[armOwned[currArmor]];
+        document.getElementById("offerType").value = slot;
+        document.getElementById("offerIndex").value = armOwned[currArmor];
+    }
+
+    function loadoutChange(order) {
+      switch (slot) {
+        case 0:
+          if (order == 1) {
+            if (currChar != charOwned.length - 1) currChar += 1;
+            else currChar = 0;
+          }
+          else {
+            if (currChar != 0) currChar -= 1;
+            else currChar = charOwned.length - 1;
+          }
+          changeCharName();
+          break;
+        case 1:
+          if (order == 1) {
+            if (currWeapon != weapOwned.length - 1) currWeapon += 1;
+            else currWeapon = 0;
+          }
+          else {
+            if (currWeapon != 0) currWeapon -= 1;
+            else currWeapon = weapOwned.length - 1;
+          }
+          changeWeapName();
+          break;
+        case 2:
+          if (order == 1) {
+            if (currShield != shieldOwned.length - 1) currShield += 1;
+            else currShield = 0;
+          }
+          else {
+            if (currShield != 0) currShield -= 1;
+            else currShield = shieldOwned.length - 1;
+          }
+          changeShiName();
+          break;
+        case 3:
+          if (order == 1) {
+            if (currArmor != armOwned.length - 1) currArmor += 1;
+            else currArmor = 0;
+          }
+          else {
+            if (currArmor != 0) currArmor -= 1;
+            else currArmor = armOwned.length - 1;
+          }
+          changeArmName();
+          break;
+      }
+    }
+    function changeSlot(order){
+      if (order == 1) {
+        if (slot != 3) slot += 1;
+        else slot = 0;
+      }
+      else {
+        if (slot != 0) slot -= 1;
+        else slot = 3;
+      }
+      document.getElementById("slotname1").innerHTML = types[slot];
+      if(slot == 0){
+        changeCharName();
+      }
+      else if (slot == 1){
+        changeWeapName();
+      }
+      else if (slot == 2){
+        changeShiName();
+      }
+      else {
+        changeArmName();
+      }
+    }
+    function start(){
+      var currChar = 0, currWeapon = 0, currShield = 0, currArmor = 0, slot=0;
+      document.getElementById("name1").innerHTML = charNames[charOwned[currChar]];
+      document.getElementById("slotname1").innerHTML = types[slot];
+      document.getElementById("offerType").value = slot;
+      document.getElementById("offerIndex").value = charOwned[currChar];
+    }
+    $(document).ready(function() { 
+      var un = $('#namePoster').val();
+      $.get('/getTradeOffers', { username: un }, function(result) {
+          console.log(result.tradeOffers);
+          $('#offercnt').text(result.tradeOffers.length);
+          if(result.tradeOffers.length != 0){
+            $('#offercnt').text('Active Offer Already! Please wait...');
+            $('#accepttradebutton').prop('disabled', true);
+          }
+          else{
+            $('#accepttradebutton').prop('disabled', false);
+          }
+        });
+
+      $('#accepttradebutton').on('click', function () {
+        $('#myModal').css('display','block');
+      });
+      $('.close').on('click', function () {
+        $('#myModal').css('display','none');
+      });
+
+      $('#like').on('click', function () {
+        var postID = $(this).siblings('#postID').text();
+        $.post('/likeTradePost', { postID: postID }, function(result) {
+          console.log(result);
+        });
+        $.get('/updateTradeRating', { postID: postID }, function(result) {
+          document.location.reload(true);
+        });
+      });
+
+      $('#dislike').on('click', function () {
+        var postID = $(this).siblings('#postID').text();
+        $.post('/dislikeTradePost', { postID: postID }, function(result) {
+          console.log(result);
+        });
+        $.get('/updateTradeRating', { postID: postID }, function(result) {
+          document.location.reload(true);
+        });
+      });
+      $('#sendOffer').on('click', function () {
+        var offerType = $('#offerType').val();
+        var offerName = $('#name1').text();
+        var offerIndex = $('#offerIndex').val();
+        var username = $('#namePoster').val();
+        var itemName = $('#itemName').text();
+
+        $.post('/postTradeOffer', {username: username , offerIndex:offerIndex, offerType:offerType, offerName:offerName, itemName:itemName}, function (result) {
+          document.location.reload(true);
+        });
+      });
+      $('.changeButton').on('click', function () {
+        var offerIndex = $('#offerIndex').val();
+        if($('#offerIndex').val() == 0){
+          $('#sendOffer').prop('disabled', true);
+        }
+        else{
+          $('#sendOffer').prop('disabled', false);
+        }
+      });
+    });
+  </script>
+</head>
+<body onload="start()">
+
+  {{> header username=username}}
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="cont1">
+      <div class="rowcontainer">
+        <button onClick="changeSlot(0)" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="slotname1" style="width:150px"></div>
+        <button onClick="changeSlot(1)" class="changeButton" style="margin-left: 10px"> Next </button>
+        <input style="display:none" class="detail" id="namePoster" value="{{username}}">
+        <input style="display:none" class="detail" id="nameUser" value="{{name}}">
+      </div>
+      <div class="rowcontainer" style="margin-top: 10px">
+        <button onClick="loadoutChange(0);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="name1" style="width:150px"></div>
+        <button onClick="loadoutChange(1);" class="changeButton" style="margin-left: 10px"> Next </button>
+        <input style="display:none" class="detail" id="offerType">
+        <input style="display:none" class="detail" id="offerIndex">
+        <input style="display:none" class="detail" id="itemName" value="{{content}}">
+      </div>
+      <button id="sendOffer" style="margin-top: 10px" disabled>Send Offer</button>
+    </div>
+  </div>
+
+</div>
+  <!-- Main -->
+  <div class="postsection">
+    <div class="forumtype" id="forumtypetrade">
+      <div class="forum_type_icons" id="trade_icon"></div>
+    </div>
+    <div class="postheader">
+      <img class="usericon" src="/images/avatar/{{profpic}}.png" alt="{{username}} Icon">
+      <div class="postheadercontent">
+        {{~username~}} <span style="color:grey"> • Posted {{postedAt}}</span>
+      </div>
+      <!--<a class="edit">edit</a>-->
+    </div>
+    <div class="mainpost">
+
+      <p class="mainpostbody">
+        {{~#bold}}
+          {{~title~}}
+        {{/bold}}
+        <div class="taskdetails" id="tradedetails">
+          For Trade: <b>{{content}}</b><br>
+          Offers: <b><p id="offercnt"></p></b> (Awaiting Confirmation)<br>
+          <button id="accepttradebutton" name="accepttradebutton">OFFER</button>
+        </div>
+      </p>
+      <div class="mainpostfooter">
+        <input id="dislike" class="forumreax" type="image" src="/images/dislike.png">
+        <p id="postRating" class="forumreaxcnt">{{rating}}</p>
+        <input type="image" id="like" class="forumreax" src="/images/like.png">
+        <p id="postID" style="visibility: hidden"> {{~postID}}</p>
+      </div>
+
+    </div>
+
+    <!-- Reply -->
+    <div id="submitreplysection">
+      <form id="replyinput" method="post">
+        <textarea placeholder="Comment Reply..." id="replysubmission" name="replysubmission"></textarea>
+        <input type="submit" name="submitbutton" id="submitbutton" value="Comment">
+      </form>
+    </div>
+
+    <div class="repliessection" id="replylist">
+      {{#each replies}}
+        {{> replycard}}
+      {{/each}}
+    </div>
+  </div>
+</body>
+</html>

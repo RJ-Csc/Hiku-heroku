@@ -1,0 +1,161 @@
+button{
+	border:0;
+	font-family:inherit;
+	font-size: 100%;
+	outline: none;
+	text-align: center;
+}
+
+.rowcontainer{
+	display:flex;
+    flex-direction: row;
+    margin:auto;
+    width: 100%;
+}
+#charcontainer{
+    margin:auto;
+    width: 60%;
+}
+.colcontainer{
+	display:flex;
+    flex-direction: column;
+    margin:auto;
+    width: 100%;
+}
+.headertext{
+	font-size: 42px;
+	text-align: center;
+	color:#eceff4;
+	margin-top: 3px;
+	margin-bottom: auto;
+	cursor: pointer;
+}
+.settingbox{
+	height: 60px;
+	width: 300px;
+	background-color: #434c5e;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    margin-top:50px;
+    margin-left:25px;
+    margin-right:25px;
+    opacity:30%;
+    transition: .5s ease;
+    overflow: hidden;
+}
+
+.loadoutbox{
+	height: 60px;
+	width: 1000px;
+	background-color: #434c5e;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    margin-top:50px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity:30%;
+    transition: .5s ease;
+    overflow: hidden;
+}
+
+.bottombutton{
+	text-align: center;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #3b4252;
+	color:#8fbcbb;
+	margin-top: 5px;
+	cursor: pointer;
+	font-size: 125%;
+	text-align: center;
+	border-radius: 10px;
+	transition: .4s ease;
+}
+.bottombutton:hover{
+	background-color:#517d6f;
+}
+.charDetail{
+	text-align: center;
+	font-size: 24px;
+	width: 60%;
+	height: 45px;
+	padding-top: 2px;
+	background-color: #2e3440;
+	color : #eceff4;
+	border-radius: 10px;
+	text-align: center;
+	font-family: 'Lexend';
+}
+.charStats {
+	text-align: center;
+	margin : auto; 
+	color : #eceff4;
+	font-size: 20px; 
+	width : 60%;
+}
+#loadoutMargin{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.loadoutDetail{
+	text-align: center;
+	font-size: 24px;
+	text-align: center;
+	width: 60%;
+	height: 45px;
+	background-color: #eceff4;
+	border-radius: 10px;
+	text-align: center;
+	font-family: 'Lexend';
+}
+.loadoutButton{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	width: 15%;
+	height: 45px;
+	background-color: #3b4252;
+	color:#8fbcbb;
+	cursor: pointer;
+	text-align: center;
+	border-radius: 10px;
+	transition: .4s ease;
+	font-family: 'Lexend';
+}
+
+.loadoutButton:hover{
+	background-color:#517d6f;
+}
+#charImg{
+	border-radius:10px;
+	border: 3px solid #081B33;
+	margin-right:auto;
+	margin-top: auto;
+	margin-bottom: 40px;
+	margin-left: auto;
+}
+input{
+  width: 70%;
+  padding: 8px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 100%;
+  display: inline-block;
+  font-size: 12px;
+  font-family:'Lexend';
+  transition: .5s ease;
+}
+
+/* Lines */
+hr{
+	height:2px;
+	width: 80%;
+	background-color: #4c566a;
+	border-color: #4c566a;
+}

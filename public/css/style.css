@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300&display=swap');
+body {
+	background-color: #4c566a;
+	margin: auto;
+  width: 100%;
+	font-family: 'Lexend';
+  background-image: url('/images/backdrop.jpg');
+	background-attachment: fixed;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+/* Navigation Bar */
+.container{
+	display: flex;
+	background-color: #4c566a;
+	justify-content: right;
+	width: 100%;
+	opacity: 30%;
+	transition: opacity .2s ease-out;
+	position: fixed;
+	top: 0px;
+	z-index: 1;
+}
+.container:hover {
+	opacity: 90%;
+	transition: opacity .2s ease-out;
+}
+/* Containers */
+.rowcontainer{
+	display:flex;
+    flex-direction: row;
+    margin:auto;
+    width: 100%;
+}
+.colcontainer{
+	display:flex;
+    flex-direction: column;
+    margin:auto;
+    width: 100%;
+}
+
+.navbutton{
+	padding-left: 20px;
+	padding-right: 20px;
+	display:inline-block;
+	text-align: center;
+	color:#88c0d0;
+	cursor: pointer;
+	font-size: 125%;
+}
+.navbutton:hover{
+	background-color: #88c0d0;
+	color: white;
+	margin-top: auto;
+	margin-bottom: auto;
+	transition: .5s ease;
+}
+
+  .dropdown {
+	position: relative;
+	display: inline-block;
+  }
+  
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+  }
+  
+  .dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+
+
+
+#hello_text{
+
+	margin-right:auto; 
+	margin-top: auto; 
+	margin-bottom: auto;
+	margin-left: 10px;
+	text-align: left;
+
+	color: white;
+	font-size: 40px;
+}
+
+/* Formatting */
+.center{
+	margin: auto;
+}

@@ -1,0 +1,45 @@
+
+<!-- Navigation Bar-->
+<div class="container" id="navigation">
+
+  {{#if flag}}
+    <a href="/logout"><div class="navbutton">
+  		  <p><b>Logout</b></p>
+  	</div></a>
+    <img src="/images/hiku-small.png" height=40px style=" margin-top: auto; margin-bottom: auto; margin-left: 10px">
+    <div id="hello_text">| Hello {{name}}!</div>
+    <a href="/home/{{name}}"><div class="navbutton">
+      <p><b>Home</b></p>
+    </div></a>
+
+    <a href="/explore/{{name}}"><div class="navbutton">
+      <p><b>Explore</b></p>
+    </div></a>
+    <a href="/battle/{{name}}"><div class="navbutton">
+      <p><b>Battle</b></p>
+    </div></a>
+    <a href="/trade/{{name}}"><div class="navbutton">
+      <p><b>Trade</b></p>
+    </div></a>
+
+    <div class="dropdown">
+      <div class="navbutton" style="cursor: context-menu;"><p><b>Forum</b></p></div>
+      <div class="dropdown-content">
+        <a href="/forum/discussion/{{name}}">Discussions</a>
+        <a href="/forum/explore/{{name}}">Explorations</a>
+        <a href="/forum/battle/{{name}}">Battles</a>
+        <a href="/forum/trade/{{name}}">Trades</a>
+      </div>
+    </div>
+
+    <a href="/account/{{name}}"><div class="navbutton">
+      <p><b>Account</b></p>
+    </div></a>
+  {{else}}
+    <a href="/"><div class="navbutton">
+        <p><b>Login</b></p>
+    </div></a>
+    <img src="/images/hiku-small.png" height=40px style=" margin-top: auto; margin-bottom: auto; margin-left: 10px">
+    <div id="hello_text"></div>
+  {{/if}}
+</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Explore</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/explore.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#explorelisting').on('click', '#teamexplore', function() {
+        var title = prompt("Please enter challenge title", "");
+        if (title == null || title == "") {
+          title = "No Title";
+        }
+        var multiplier = 1;//$(this).parent('div').parent('div').siblings('div').children('slider').val();
+        var location =  $(this).siblings('#loc_title').text();
+        var loot = $(this).siblings('#loc_loot').text();
+        console.log(loot + ' ' + location + ' ' + multiplier);
+        $.post('/postExplore', {title: title, location: location, loot: loot, multiplier: multiplier}, function(result) {
+        });
+        alert('Posted in Forum!');
+      });
+    });
+  </script>
+</head>
+<body>
+
+ <!-- Navigation Bar-->
+  {{> header username=username}}
+
+  <div id="explorerefresh">
+    <p id="exploretext">EXPLORE</p>
+    <p id="timer">⏰ • 1h until task refresh</p>
+  </div>
+
+  <div id="explorelisting">
+    {{#each location}}
+        {{> explore_loc}}
+    {{/each}}
+  </div>
+
+</body>
+</html>

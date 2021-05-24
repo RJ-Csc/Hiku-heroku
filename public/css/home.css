@@ -1,0 +1,248 @@
+#infobox_container{
+    width: 1144px;
+    display: flex;
+    flex-direction: row;
+    margin: 128px auto 0;
+}
+
+.infobox_elem{
+    background-color: #434c5e;
+    border-radius: 25px;
+    margin: 0px 32px 0px;
+}
+
+#infobox_stats{
+    width: 720px;
+    height: 512px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#infobox_playerinf{
+    width: 360px;
+    height: 512px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#infobox_title{
+    color:#8fbcbb;
+    margin: 20px 30px 0px;
+    font-size: 52px;
+    font-weight: bold
+}
+
+#user_profpic{
+    margin-top: 80px;
+    border-radius: 50%;
+    border: 3px solid #88c0d0;
+}
+
+#user_name{
+    margin-top: 10px;
+    font-size: 32px;
+    font-weight:bold;
+    color:#eceff4;
+}
+
+#user_status{
+    margin-top: 10px;
+    font-size: 22px;
+    font-style: italic;
+    text-align: center;
+    color:#eceff4;
+    width: 320px;
+}
+
+#progbar_container {
+    background-color: #2e3440;
+    width: 80%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+#expbar_container {
+    background-color: #2e3440;
+    width: 80%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+#textbox{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    width: 30%;
+}
+
+#barbox{
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+
+#textbar{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+#loginpage:hover{
+    background-color: #517d6f;
+    transition: .2s ease-out;
+}
+.curr_task_bigtext{
+    margin-left: 30px;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.prog_bar {
+    background-color: #a3be8c;
+    color: white;
+    text-align: right;
+    font-size: 20px;
+    border-radius: 15px;
+    width: 80%;
+}
+
+.curr_task_smalltext{
+    margin-bottom: 10px;
+    color:#88c0d0;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.curr_task_variable{
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+#curr_task_desc{
+    color: white;
+    margin-left: 50px;
+    margin-right: 30px;
+    font-size: 19px;
+}
+
+#curr_task_cancel{
+    background-color: #bf616a;
+    color: white;
+
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Lexend';
+
+    margin-left: 192px;
+    margin-top: 25px;
+
+    width: 256px;
+    height: 64px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#curr_task_cancel:hover{
+    color: #2e3440;
+    background-color: #eceff4;
+    transition: .2s ease;
+}
+
+#taskbox{
+    display: flex;
+    flex-direction: column;
+    width: 1144px;
+    margin: auto;
+}
+
+#task_div{
+    margin: 20px 0px;
+    font-size: 52px;
+}
+
+.user_smalltext{
+    font-size: 22px;
+    color: white;
+    margin-top:24px;
+}
+
+.task_container{
+    width: 1144px;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+    box-shadow: 0 0 3px #d8dee9;
+    margin-bottom: 20px;
+}
+
+.task_title{
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.task_desc{
+    font-size: 22px;
+    margin-top: 8px;
+}
+
+.task_info{
+    display: flex;
+    flex-direction: row;
+}
+
+.task_info_icons{
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 26px;
+    zoom: 80%;
+    margin-right: 8px;
+}
+#location{
+    background-image: url("images/task_sprite.png");
+    background-position: -26px 0px;
+}
+#loot{
+    background-image: url("images/task_sprite.png");
+    background-position: 0px 0px;
+}
+
+.task_infotext{
+    width: 192px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.accept_task_btn{
+    background-color: #8fbcbb;
+    color: #2e3440;
+
+    text-align: center;
+    font-size: 19px;
+    font-weight: bold;
+
+    margin-left: 984px;
+    width: 144px;
+    height: 48px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Lexend';
+}
+.accept_task_btn:hover{
+    background-color: #2e3440;
+    color:white;
+    transition: .2s ease;
+}
+
+#no_task_msg{
+    margin: 160px auto;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}

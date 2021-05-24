@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forum</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forum.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!--<script src="/js/forum.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#forumlist').on('click', '.likereax', function () {
+          var postID = $(this).siblings('#postID').text();
+          $.post('/likeBattlePost', { postID: postID }, function(result) {
+            console.log(result);
+          });
+          $.get('/updateBattleRatings', { postID: postID }, function(result) {
+            document.location.reload(true);
+          });
+      });
+
+      $('#forumlist').on('click', '.dislikereax', function () {
+          var postID = $(this).siblings('#postID').text();
+          $.post('/dislikeBattlePost', { postID: postID }, function(result) {
+            console.log(result);
+          });
+          $.get('/updateBattleRatings', { postID: postID }, function(result) {
+            document.location.reload(true);
+          });
+      });
+
+    });
+  </script>
+</head>
+<body>
+  <div id="top"></div>
+  {{> header username=username}}
+
+  <div class="forumpagebody">
+
+    <!-- Action Section -->
+    <div class="actionsection">
+
+      <div id="otherforumactions">
+        <a href="/explore/{{name}}"><div class="forumactions" id="reqexplore">Explore!</div></a>
+        <p class="actiondesc">Request companions!</p>
+        <a href="/trade/{{name}}"><div class="forumactions" id="reqtrade">Trade!</div></a>
+        <p class="actiondesc">Trade items or characters!</p>
+        <a href="/forum/discussion/{{name}}"><div class="forumactions" id="reqdiscuss">Discuss!</div></a>
+        <p class="actiondesc">Talk to other players</p>
+      </div>
+    </div>
+
+    <!-- Forum Post Listing -->
+    <div class="forumsection" id="forumlist">
+      {{#each posts}}
+        {{> battlepost}}
+      {{/each}}
+    </div>
+  </div>
+  <a id="backtotop" href="#top">Back to Top!</a>
+</body>
+</html>

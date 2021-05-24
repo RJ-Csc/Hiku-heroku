@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Account</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/account.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/js/account.js"></script>
+  <script>
+  	var currChar = {{{json currC}}};
+  	var currWeapon = {{{json currW}}};
+  	var currArmor = {{{json currA}}};
+  	var currShield = {{{json currS}}};
+
+  	var weapOwned = [];
+	var armOwned = [];
+	var shieldOwned = [];
+	var charOwned = []; 
+
+	charOwned = {{{json charOwned}}};
+	armOwned = {{{json armOwned}}};
+	shieldOwned = {{{json shieldOwned}}};
+	weapOwned = {{{json weapOwned}}};
+
+		function start(){
+		  document.getElementById("charName").innerHTML = charNames[charOwned[currChar]];
+		  document.getElementById("weaponName").innerHTML = weaponNames[weapOwned[currWeapon]];
+		  document.getElementById("shieldName").innerHTML = shieldNames[shieldOwned[currShield]];
+		  document.getElementById("armorName").innerHTML = armorNames[armOwned[currArmor]];
+		  checkStat();
+		}
+		function loadoutChange(slot, order) {
+		  switch (slot) {
+		    case 1:
+		      if (order == 1) {
+		        if (currChar != charOwned.length - 1) currChar += 1;
+		        else currChar = 0;
+		      }
+		      else {
+		        if (currChar != 0) currChar -= 1;
+		        else currChar = charOwned.length - 1;
+		      }
+		      document.getElementById("charName").innerHTML = charNames[charOwned[currChar]];
+		      break;
+		    case 2:
+		      if (order == 1) {
+		        if (currWeapon != weapOwned.length - 1) currWeapon += 1;
+		        else currWeapon = 0;
+		      }
+		      else {
+		        if (currWeapon != 0) currWeapon -= 1;
+		        else currWeapon = weapOwned.length - 1;
+		      }
+		      document.getElementById("weaponName").innerHTML = weaponNames[weapOwned[currWeapon]];
+		      break;
+		    case 3:
+		      if (order == 1) {
+		        if (currShield != shieldOwned.length - 1) currShield += 1;
+		        else currShield = 0;
+		      }
+		      else {
+		        if (currShield != 0) currShield -= 1;
+		        else currShield = shieldOwned.length - 1;
+		      }
+		      document.getElementById("shieldName").innerHTML = shieldNames[shieldOwned[currShield]];
+		      break;
+		    case 4:
+		      if (order == 1) {
+		        if (currArmor != armOwned.length - 1) currArmor += 1;
+		        else currArmor = 0;
+		      }
+		      else {
+		        if (currArmor != 0) currArmor -= 1;
+		        else currArmor = armOwned.length - 1;
+		      }
+		      document.getElementById("armorName").innerHTML = armorNames[armOwned[currArmor]];
+		      break;
+		  }
+		  checkStat();
+		}
+		function checkStat() {
+		document.getElementById("currC").value = currChar;
+		document.getElementById("currS").value = currShield;
+		document.getElementById("currA").value = currArmor;
+		document.getElementById("currW").value = currWeapon;
+
+		  var att = charStat[charOwned[currChar]].att;
+		  var def = charStat[charOwned[currChar]].def;
+		  var hp = charStat[charOwned[currChar]].hp;
+
+		  var attadd = weapMStat[weapOwned[currWeapon]];
+		  var defadd = armMStat[armOwned[currArmor]] + shieldMStat[shieldOwned[currShield]];
+		  var hpadd = 0;
+
+		  if(armSStat[armOwned[currArmor]].type == "att"){
+		    attadd += armSStat[armOwned[currArmor]].val;
+		  }
+		  else if(armSStat[armOwned[currArmor]].type == "def"){
+		    defadd += armSStat[armOwned[currArmor]].val;
+		  }
+		  else if(armSStat[armOwned[currArmor]].type == "hp"){
+		    hpadd += armSStat[armOwned[currArmor]].val;
+		  }
+
+		  if(weapSStat[weapOwned[currWeapon]].type == "att"){
+		    attadd += weapSStat[weapOwned[currWeapon]].val;
+		  }
+		  else if(weapSStat[weapOwned[currWeapon]].type == "def"){
+		    defadd += weapSStat[weapOwned[currWeapon]].val;
+		  }
+		  else if(weapSStat[weapOwned[currWeapon]].type == "hp"){
+		    hpadd += weapSStat[weapOwned[currWeapon]].val;
+		  }
+
+		  if(shieldSStat[shieldOwned[currShield]].type == "att"){
+		    attadd += shieldSStat[shieldOwned[currShield]].val;
+		  }
+		  else if(shieldSStat[shieldOwned[currShield]].type == "def"){
+		    defadd += shieldSStat[shieldOwned[currShield]].val;
+		  }
+		  else if(shieldSStat[shieldOwned[currShield]].type == "hp"){
+		    hpadd += shieldSStat[shieldOwned[currShield]].val;
+		  }
+
+		  document.getElementById("hp").innerHTML = hp;
+		  document.getElementById("att").innerHTML = att;
+		  document.getElementById("def").innerHTML = def;
+
+		  document.getElementById("attadd").innerHTML = attadd;
+		  document.getElementById("defadd").innerHTML = defadd;
+		  document.getElementById("hpadd").innerHTML = hpadd;
+
+		  document.getElementById("currAtt").value = att+attadd;
+		  document.getElementById("currHp").value = hp+hpadd;
+		  document.getElementById("currDef").value = def+defadd;
+		}
+  </script>
+</head>
+<body onload = "start()">
+	{{> header username=username}}
+
+  <div class="rowcontainer" style="margin-top: 70px">
+  	<form method="post" action="/changeUsername" style="margin-left:auto">
+		<div class="settingbox" id="usernameBox" style="margin-left:auto;">
+			<div class="headertext" id="userHead">Username</div>
+			<hr>
+			<input type="text" name="new_username" value="{{username}}" id="usernameHolder">
+			<div id="error" style="color:#FF6A55"></div>
+			<button type="submit" onClick="nameChange();" class="bottombutton" id="changeUsername">Change Username</button>
+		</div>
+	</form>
+	<form method="post" action="/changePassword">
+		<div class="settingbox" id="passwordBox">
+			<div class="headertext" id="passHead">Password</div>
+			<hr>
+			<input type="password" name="new_password">
+			<button type="submit" onClick="passChange();" class="bottombutton" id="changePassword">Change Password</button>
+		</div>
+	</form>
+	<form method="post" action="/changeStatus" style="margin-right:auto;">
+		<div class="settingbox" id="statusBox" style="margin-right:auto;">
+			<div class="headertext" id="statHead">Status</div>
+			<hr>
+			<input type="text" name="new_status">
+			<button type="submit" onClick="statusChange();" class="bottombutton" id="changeStatus">Change Status</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="loadoutbox" id="loadoutBox" style="margin-bottom: 50px">
+	<div class="headertext" id="loadoutHead"> Loadout </div>
+
+	<hr>
+
+	<div class="rowcontainer">
+		<div class="colcontainer" id="charcontainer">
+			<img src="images/placeholder.png" height = 300px id="charImg">
+			<div class="rowcontainer">
+				<button onClick="loadoutChange(1, 0);" class="loadoutButton"> Prev </button>
+				<div class="charDetail" id="charName">  </div>
+				<button onClick="loadoutChange(1, 1);" class="loadoutButton"> Next </button>
+			</div>
+
+		</div>
+		<div class="colcontainer" id="loadoutMargin">
+			<div class="rowcontainer">
+				<button onClick="loadoutChange(2, 0);" class="loadoutButton arrow"> Prev </button>
+				<div class="loadoutDetail" id="weaponName">  </div>
+				<button onClick="loadoutChange(2, 1);" class="loadoutButton arrow"> Next </button>
+			</div>
+			<div class="rowcontainer">
+				<button onClick="loadoutChange(3, 0);" class="loadoutButton arrow"> Prev </button>
+				<div class="loadoutDetail" id="shieldName">  </div>
+				<button onClick="loadoutChange(3, 1);" class="loadoutButton arrow"> Next </button>
+			</div>
+			<div class="rowcontainer">
+				<button onClick="loadoutChange(4, 0);" class="loadoutButton arrow"> Prev </button>
+				<div class="loadoutDetail" id="armorName">  </div>
+				<button onClick="loadoutChange(4, 1);" class="loadoutButton arrow"> Next </button>
+			</div>
+		</div>
+		</div>
+		<hr style="margin-top: 20px">
+		<div class="rowcontainer">
+			<div class="charStats"> Health Points </div>
+			<div class="charStats"> Attack </div>
+			<div class="charStats"> Defence </div>
+		</div>
+		<div class="rowcontainer" style="margin-bottom: 10px">
+			<div class="charStats" id="hp" style="background-color:#3b4252"></div>
+			<div class="charStats" id="att" style="background-color:#3b4252"></div>
+			<div class="charStats" id="def" style="background-color:#3b4252"></div>
+		</div>
+		<div class="rowcontainer" style="margin-bottom: 10px">
+			<div class="charStats" id="hpadd" style="background-color:#3b4252; color:#83d4ab"></div>
+			<div class="charStats" id="attadd" style="background-color:#3b4252; color:#83d4ab"></div>
+			<div class="charStats" id="defadd" style="background-color:#3b4252; color:#83d4ab"></div>
+		</div>
+		<div class="rowcontainer" style="margin-bottom: 10px">
+			<form method="post" style="margin:auto" action="/updateCurr">
+				<button onClick="statusChange();" class="bottombutton" id="changeStatus">Set Active Character</button>
+				<input style="visibility:hidden" name="currC" id="currC">
+				<input style="visibility:hidden" name="currS" id="currS">
+				<input style="visibility:hidden" name="currA" id="currA">
+				<input style="visibility:hidden" name="currW" id="currW">
+				<input style="visibility:hidden" name="currAtt" id="currAtt">
+				<input style="visibility:hidden" name="currHp" id="currHp">
+				<input style="visibility:hidden" name="currDef" id="currDef">	
+							
+			</form>
+		</div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+hr{
+	height:2px;
+	width: 80%;
+	background-color: #4c566a;
+	border-color: #4c566a;
+}
+
+#battlerefresh {
+  display: flex;
+  text-align: right;
+  margin-top: 64px;
+  color: white;
+  padding: 5px;
+}
+#battletext {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 1%;
+  margin-right: auto;
+  font-weight: bold;
+  font-size: 32px;
+}
+#timer {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  font-size: 24px;
+}
+
+.challengesection {
+  display: flex;
+  flex-direction: column;
+  background-color: #2e3440;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+	margin-bottom: 75px;
+  width: 75%;
+  border-radius: 10px;
+  padding: 10px;
+}
+.challengecontent {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+	margin-right: auto;
+  width: 64%;
+}
+.challengedesc {
+  background-color: #3b4252;
+  height: 50px;
+  text-align: center;
+  color: #eceff4;
+  font-size: 24px;
+  padding: 5px;
+}
+.challengebutton {
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 50px;
+  width: 40%;
+  font-size: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #FBFBFF;
+	background-color: #CA7D84;
+}
+.challengebutton:hover {
+	background-color: #D69A9F;
+}
+
+.battlesection {
+  display: flex;
+  flex-direction: column;
+  background-color: #434c5e;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  border-radius: 10px;
+  padding: 10px;
+}
+.battleheader {
+  color: #eceff4;
+  font-weight: bold;
+  text-align: center;
+  font-size: 45px;
+}
+.battlebody {
+  display: flex;
+}
+.mobpic {
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  border: 5px solid #2e3440;
+}
+.battlecontent {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3%;
+  width: 64%;
+}
+.battledesc {
+  background-color: #4c566a;
+  height: 125px;
+  text-align: center;
+  color: #eceff4;
+  font-size: 24px;
+  padding: 5px;
+  overflow-y: scroll;
+}
+.battleopt {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  color: #eceff4;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+.buttonopt {
+  margin-top: 10px;
+  display:flex;
+  justify-content: center;
+}
+.battlebutton {
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 50px;
+  width: 40%;
+  font-size: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #FBFBFF;
+}
+#solobattle {
+  background-color: #66A3A2;
+}
+#solobattle:hover {
+  background-color: #80B3B2;
+}
+#teambattle {
+  background-color: #517AA4;
+}
+#teambattle:hover {
+  background-color: #698FB5;
+}
+
+.battlefooter {
+}
+.slidecontainer {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.slider {
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+.slider:hover {
+  opacity: 1;
+}
+.outcome {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #ebcb8b;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}

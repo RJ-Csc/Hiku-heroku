@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!--<script src="/js/home.js"></script>-->
+</head>
+<body>
+  {{> header username=username}}
+
+  <div id="infobox_bg">
+    <div id="infobox_container">
+      <div id="infobox_playerinf" class="infobox_elem">
+
+
+        <img id="user_profpic" src="../images/avatar/{{profpic}}.png" alt="{{username}} picture" width="128" height="128">
+        <div id="user_name">{{username}}</div>
+
+
+        <div id="user_status">
+          {{status}}
+          <!--"It's either do it or not do it at all."-->
+        </div>
+
+
+
+
+        <div class="user_smalltext">
+          Tier {{tier}}
+        </div>
+
+        <div id="expbar_container">
+          <div style="background-color: #88c0d0;color: #2e3440;text-align: right;font-size: 20px;border-radius: 15px;width: {{tierProgress}}%;">{{tierProgress}}%</div>
+        </div>
+
+      </div>
+      <div id="infobox_stats" class="infobox_elem">
+      <!--by default, player is not doing task-->
+
+      <div id="infobox_title">
+        Welcome back!
+        </div>
+      <div id=no_task_msg>
+        You're currently not on a task. To begin one, click on the "Explore" tab.
+      </div>
+
+        <!--
+
+          WHEN PLAYER IS DOING TASK
+
+        <div id="infobox_title">Welcome back!</div>
+
+        <div class="curr_task_bigtext">Current Task: Explore </div>
+
+        <div id="textbar">
+          <div id="textbox">
+            <div class="curr_task_smalltext">Location:</div>
+            <div class="curr_task_smalltext">Possible Loot:</div>
+            <div class="curr_task_smalltext">Progress:</div>
+          </div>
+          <div id="barbox">
+            <div class="curr_task_variable"> Akihabara</div>
+            <div class="curr_task_variable"> Tanti Spellbook</div>
+            <div id="progbar_container">
+              <div class="prog_bar">5m remaining </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="curr_task_bigtext">Description:</div>
+
+        <div id="curr_task_desc">
+          Named after Akihiko Matsubara, the creator of Tanti. Because of that Akihabara frequently gets attacked by the Tanti. Explore this location at your own risk!
+        </div>
+
+        <button onClick="cancelTask();" id="curr_task_cancel">
+          Cancel Task
+        </button>
+        -->
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

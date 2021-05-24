@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Index</title>
+  <!--<link rel="stylesheet" href="/css/style.css">-->
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/js/login.js"></script>
+  <script>
+    $(document).ready(function () {
+
+        $('#username').keyup(function () {
+
+              var username = $('#username').val();
+
+            $.get('/getCheckUsername', {username: username}, function (result) {
+                if(result.username == username) {
+                  $('#username').css('background-color', '#9CD9BF');
+                  $('#error').html('&nbsp');
+                  $('#submit').prop('disabled', false);
+                }
+
+                else {
+                  $('#username').css('background-color', '#FF6A55');
+                  $('#error').text('Invalid Username');
+                  $('#submit').prop('disabled', true);
+                }
+            });
+        });
+    });
+  </script>
+</head>
+<body>
+
+<!--<form method="post" action="/login">-->
+
+
+<!---->
+
+
+<div id="midbox">
+
+    <div id="leftbox">
+      {{> intro }}
+      <a href="/" id="back_btn">< Back</a>
+    </div>
+
+    <div id="rightbox">
+      <form method="post">
+        <div class="logincontainer">
+            <div style="font-size: 22px"> Username </div>
+            <input class="text_field"type="text" name="username" id="username" required>
+            <div style="font-size: 22px"> Password </div>
+            <input class="text_field"type="password" id="password" name="password" style="margin-bottom: 20px" required>
+
+            <button class="bottombutton" id="submit" type="submit"><p style="margin-top:6px">Login</p></button>
+            <p id="error"></p>
+        </div>
+      </form>
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

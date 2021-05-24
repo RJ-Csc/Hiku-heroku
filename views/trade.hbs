@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/trade.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/js/trade.js"></script>
+  <script>
+    charOwned =   {{{json charOwned}}};
+    armOwned =    {{{json armOwned}}};
+    shieldOwned = {{{json shieldOwned}}};
+    weapOwned =   {{{json weapOwned}}};
+    function start(){
+      var currChar = 0, currWeapon = 0, currShield = 0, currArmor = 0, slot=0;
+      document.getElementById("name1").innerHTML = charNames[charOwned[currChar]];
+      document.getElementById("slotname1").innerHTML = types[slot];
+      document.getElementById("toTrade").value = charNames[charOwned[currChar]];
+      document.getElementById("itemType").value = slot;
+      document.getElementById("itemIndex").value = charOwned[currChar];
+    }
+    var activeTrade = 0;
+    
+    $(document).ready(function () {
+
+      $('#testSubmit').ready(function () {
+        var username = {{{json username}}};
+          
+          if(!$('#itemIndexMain').val()){
+            $('.tradebox2').css('display','none');
+          }
+          else{
+            $('.tradebox2').css('display','visible');
+          }
+          $.get('/getCheckTrade', {username: username}, function (result) {
+            if(result.username == username) {
+              $('#postSubmit').css('background-color', '#FF6A55');
+              $('#postSubmit').html('Already an active trade!');
+              $('#postSubmit').prop('disabled', true);
+              activeTrade = 1;
+            }
+            else{
+              if($('#itemIndex').val() == 0){
+                $('#postSubmit').css('background-color', '#FF6A55');
+                $('#postSubmit').html('Cannot trade starters!');
+                $('#postSubmit').prop('disabled', true);
+              }
+              else{
+                $('#postSubmit').html('SUBMIT');
+                $('#postSubmit').prop('disabled', false);
+                $('#postSubmit').css('background-color', '#3b4252');
+              }
+            }
+          });
+        });
+
+      $('.card').on('click', '.bottombutton', function () {
+
+          var offeredItem = $(this).siblings('#formID').find('#offerN').val();
+          var itemMain = $(this).siblings('#formID').find('#uName').val();
+          var offerType = $(this).siblings('#formID').find('#offerT').val();
+          var offerIndex = $(this).siblings('#formID').find('#offerI').val();
+          var usernameOfferer = $(this).siblings('#formID').find('#userOffer').val();
+
+          alert('Remember to be mindful of what you accept! You do not want to take an offer you do not want.');
+          if($('#itemdisp').width() == 0){
+            $('#itemdisp').css('opacity',1);
+            $('#itemdisp').css('width',"1400px");
+            $('#dispitem').text(itemMain);
+            $('#nameHere').text(usernameOfferer);
+            $('#offers').text(offeredItem);
+            $('#offerer').val(usernameOfferer);
+            $('#offerType').val(offerType);
+            $('#offerIndex').val(offerIndex);
+          }
+          else{
+            $('#itemdisp').css('opacity',0);
+            $('#itemdisp').css('width',0);
+            $('#dispitem').text('');
+            $('#nameHere').text('');
+            $('#offers').text('');
+            $('#offerer').val('');
+            $('#offerType').val('');
+            $('#offerIndex').val('');
+          }
+
+      });
+      $('.changeButton').click(function () {
+          if(activeTrade != 0){
+            $('#postSubmit').css('background-color', '#FF6A55');
+            $('#postSubmit').html('Already an active trade!');
+            $('#postSubmit').prop('disabled', true);
+          }
+          else{
+            if($('#itemIndex').val() == 0){
+              $('#postSubmit').css('background-color', '#FF6A55');
+              $('#postSubmit').html('Cannot trade starters!');
+              $('#postSubmit').prop('disabled', true);
+            }
+            else{
+              $('#postSubmit').html('SUBMIT');
+              $('#postSubmit').prop('disabled', false);
+              $('#postSubmit').css('background-color', '#3b4252');
+            }
+          }
+        });
+      $('#postSubmit').click(function () {
+        var itemName = $('#toTrade').val();
+        alert('posting to forum');
+          $.post('/postForumTrade', {itemName: itemName}, function (result) {
+          });
+        });
+
+      $('#acceptButton').click(function () {
+
+          var username = {{{json username}}};
+
+          var offerType = $('#offerType').val();
+          var offerIndex = $('#offerIndex').val();
+          var usernameOfferer = $('#offerer').val();
+          var itemIndex = $('#itemIndexMain').val();
+          var itemType = $('#itemTypeMain').val();
+          $.post('/acceptTrade', {username: username , usernameOfferer: usernameOfferer, itemType: itemType, itemIndex: itemIndex, offerType: offerType, offerIndex: offerIndex}, function (result) {
+            window.location.href = window.location.href;
+          });
+      });
+      $('#tradeCanceller').click(function () {
+        var username = {{{json username}}};
+        var itemIndex = $('#itemIndexMain').val();
+        var itemType = $('#itemTypeMain').val();
+
+        $.post('/removeTrade', {username: username , itemType: itemType, itemIndex: itemIndex}, function (result) {
+          window.location.href = window.location.href;
+        });
+      });
+
+    });
+
+  </script>
+</head>
+<body onload="start()">
+  {{> header username=username}}
+
+  <div class="tradebox">
+    <div class="headertext"> Trade Setup </div>
+    <hr>
+    <div id="cont1">
+
+      <div class="rowcontainer">
+        <button onClick="changeSlot(0)" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="slotname1"></div>
+        <button onClick="changeSlot(1)" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+      <div class="rowcontainer" style="margin-top: 10px">
+        <button onClick="loadoutChange(0);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="name1"></div>
+        <button onClick="loadoutChange(1);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+    </div>
+
+    <hr>
+
+      <div class="headertext" style="font-size:25px">Write something about it!</div>
+      <form method="post" action="/postTrade">
+        <div class="colcontainer">
+          <textarea name="posttext" cols="40" rows="5" style="margin-bottom: 10px;"></textarea>
+          <button onClick="post();" class="bottombutton" id="postSubmit" href="/forum/trade/{{username}}">SUBMIT</button>
+          <input style="visibility: hidden;" id="toTrade" name="itemName">
+          <input style="visibility: hidden;" id="itemType" name="itemType">
+          <input style="visibility: hidden;" id="itemIndex" name="itemIndex">
+        </div>
+      </form>
+      </div>
+
+  <div class="tradebox2" style="margin-bottom: 50px; margin-top: 15px">
+    <div class="headertext"> Trade Offers </div>
+    <hr>
+    
+    <div class="rowcontainer">
+      <div class="colcontainer" style="margin-left: 10px">
+        <button class="bottombutton" id="tradeCanceller" style="margin-top: auto">Cancel Trade</button>
+        <div class="headertext" style="font-size: 25px;"> Posted Items </div>
+        <hr>
+        {{#each tradeOffers}}
+            {{> tradecard}}
+        {{/each}}
+      </div>
+      <div class="colcontainer" id="itemdisp" style=" width:0; transition: .5s ease; opacity:0;overflow: hidden;">
+        <div class="headertext" style="font-size: 25px; overflow: hidden;" > Posted Items </div>        
+        <hr>        
+        <div class="headertext" style="font-size: 20px; font-weight: bold" id="dispitem"></div>
+
+        <div class="headertext" style="font-size: 20px; color:#8fbcbb; font-weight: bold">Offers</div>
+        <div class="headertext" style="font-size: 20px;" id="offers"></div>
+        <div class="headertext" style="font-size: 15px;">From: <span id='nameHere'></span></div>
+        <input style="display:none" id="itemTypeMain" name="itemType" value='{{itemType}}'>
+        <input style="display:none" id="itemIndexMain" name="itemIndex" value='{{itemIndex}}'>
+        <input style="display:none" id="offerer" name="offerer">
+        <input style="display:none" id="offerType" name="offerType">
+        <input style="display:none" id="offerIndex" name="offerIndex">
+
+        <button class="bottombutton" id="acceptButton">Accept</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

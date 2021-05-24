@@ -1,0 +1,170 @@
+button{
+	border:0;
+	font-family:inherit;
+	font-size: 100%;
+	outline: none;
+	text-align: center;
+}
+
+/* Containers */
+.rowcontainer{
+	display:flex;
+    flex-direction: row;
+    margin:auto;
+    width: 100%;
+}
+.colcontainer{
+	display:flex;
+    flex-direction: column;
+    margin:auto;
+    width: 100%;
+}
+/* Main Css  */
+.tradebox{
+	box-sizing: border-box;
+	width: 1000px;
+	height: 385px;
+	background-color: #434c5e;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    margin-top:120px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    opacity: 30%;
+    transition: .5s ease;
+}
+.tradebox2{
+	box-sizing: border-box;
+	width: 1000px;
+	background-color: #434c5e;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    margin-top:120px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    opacity: 30%;
+    transition: .5s ease;
+}
+.tradebox:hover{
+    opacity: 100%;
+}
+.tradebox2:hover{
+    opacity: 100%;
+}
+.headertext{
+	font-size: 42px;
+	text-align: center;
+	color:#eceff4;
+	margin-top: 3px;
+	margin-bottom: auto;
+}
+#slotname1{
+	background-color: #2e3440;
+	color:#eceff4;
+}
+#slotname2{
+	background-color: #2e3440;
+	color:#eceff4;
+}
+#slotname3{
+	background-color: #2e3440;
+	color:#eceff4;
+}
+#slotname4{
+	background-color: #2e3440;
+	color:#eceff4;
+}
+
+.changeButton{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	width: 15%;
+	height: 45px;
+	background-color: #3b4252;
+	color:#8fbcbb;
+	cursor: pointer;
+	text-align: center;
+	border-radius: 10px;
+	transition: .4s ease;
+	font-size: 25px;
+	font-family: 'Lexend';
+}
+#plusButt{
+	background-color:#2e3440;
+}
+#plusButt:hover{
+	background-color:#517d6f;
+}
+
+.detail{
+	text-align: center;
+	font-size: 35px;
+	text-align: center;
+	width: 50%;
+	height: 45px;
+	background-color: #eceff4;
+	border-radius: 10px;
+	text-align: center;
+	font-family: 'Lexend';
+}
+.changeButton:hover{
+	background-color:#517d6f;
+}
+#itemdisp{
+	background-color:#2e3440;
+	border-radius: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.bottombutton{
+	text-align: center;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #3b4252;
+	color:#8fbcbb;
+	margin-top: 5px;
+	cursor: pointer;
+	font-size: 125%;
+	text-align: center;
+	border-radius: 10px;
+	transition: .4s ease;
+}
+.bottombutton:hover{
+	background-color:#517d6f;
+}
+.tcont{
+	margin-top: 0;
+	overflow-y: hidden;
+	transition: .5s ease;
+}
+/* Lines */
+hr{
+	height:2px;
+	width: 80%;
+	background-color: #4c566a;
+	border-color: #4c566a;
+}
+
+/* Input Box */
+textarea{
+  width: 70%;
+  height: 20%;
+  padding: 8px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 100%;
+  display: inline-block;
+  font-size: 12px;
+  font-family:'Lexend';
+  transition: .5s ease;
+}

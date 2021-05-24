@@ -1,0 +1,41 @@
+cmd in project folder (2021T2-G09)
+
+index.js
+npm init
+  default values
+npm install express --save
+npm install dotenv
+npm install hbs
+npm install body-parser
+npm install mongodb --save
+npm install mongoose --save
+
+npm install supervisor -g
+
+npm install express-session
+npm install bcrypt
+npm install express-validator
+npm install connect-mongo@3
+npm install moment
+
+done to install/initialize all necessary modules (express, dotenv, hbs, etc) used in the proj (for the README):
+  npm install
+
+
+
+
+
+
+INSTALLED PACKAGES:
+express
+dotenv
+hbs
+body-parser
+mongodb
+mongoose
+
+express-session
+bcrypt
+express-validator
+connect-mongo
+moment

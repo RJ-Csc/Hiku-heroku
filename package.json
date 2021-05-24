@@ -1,0 +1,32 @@
+{
+  "name": "hiku-rework",
+  "version": "1.0.0",
+  "description": "rework for better flow",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RJ-Csc/Hiku-rework.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RJ-Csc/Hiku-rework/issues"
+  },
+  "homepage": "https://github.com/RJ-Csc/Hiku-rework#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.11.1",
+    "hbs": "^4.1.2",
+    "moment": "^2.29.1",
+    "mongodb": "^3.6.6",
+    "mongoose": "^5.12.10"
+  }
+}
