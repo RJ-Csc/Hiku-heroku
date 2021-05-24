@@ -60,7 +60,13 @@ hbs.registerHelper('linebreaks', function (content) {
   return new hbs.SafeString(content);;
 });
 
+/*
 app.listen(port, hostname, function() {
   console.log('Server is running at:');
   console.log('http://' + hostname + ':' + port);
+});
+*/
+app.listen(port || 3000, hostname || "0.0.0.0", function(){
+	console.log('Server running at:');
+	console.log('http://' + hostname  + ':' + port);
 });
