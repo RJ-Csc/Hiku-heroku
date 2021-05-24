@@ -28,5 +28,8 @@
     "moment": "^2.29.1",
     "mongodb": "^3.6.6",
     "mongoose": "^5.12.10"
+  },
+  "scripts": {
+    "start": "index.js"
   }
 }
