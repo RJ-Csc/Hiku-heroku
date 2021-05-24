@@ -116,6 +116,7 @@
         var itemName = $('#toTrade').val();
 
           $.post('/postForumTrade', {itemName: itemName}, function (result) {
+            window.location.href = window.location.href;
           });
         });
 
